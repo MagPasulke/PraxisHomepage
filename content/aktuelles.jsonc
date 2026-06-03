@@ -1,0 +1,19 @@
+{
+  // Willkommenstext und aktuelle Praxis-News
+  "welcome": {
+    "title": "Willkommen in der Gemeinschaftspraxis Soika",
+    "text": "Ihre Gesundheit liegt uns am Herzen. Wir sind eine moderne Gemeinschaftspraxis mit zwei Standorten und einem engagierten Team aus erfahrenen Ärztinnen, Ärzten und medizinischen Fachangestellten."
+  },
+  "news": [
+    {
+      "title": "Sommerurlaub 2026",
+      "date": "2026-07-15",
+      "text": "Unsere Praxis ist vom 15.07. bis 02.08.2026 geschlossen. Die Vertretung übernimmt Dr. Mustermann, Musterstraße 1."
+    },
+    {
+      "title": "Neue Sprechzeiten",
+      "date": "2026-06-01",
+      "text": "Ab Juni bieten wir donnerstags eine erweiterte Abendsprechstunde bis 19:00 Uhr an."
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+import {
+  getLoaderScript,
+  getInitialStyles,
+  getFontFaceStyles,
+  getFontLinks,
+  getComponentChunkLinks,
+  getIconLinks,
+} from '@porsche-design-system/components-js/partials';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Gemeinschaftspraxis Soika – Ihre Hausarztpraxis mit zwei Standorten.' } = Astro.props;
+
+const navItems = [
+  { label: 'Willkommen', href: '#willkommen' },
+  { label: 'Leistungen', href: '#leistungen' },
+  { label: 'Team', href: '#team' },
+  { label: 'Standorte', href: '#standorte' },
+  { label: 'Rezeptbestellung', href: '#rezeptbestellung' },
+];
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <Fragment set:html={getInitialStyles()} />
+  <Fragment set:html={getFontFaceStyles()} />
+  <Fragment set:html={getFontLinks()} />
+  <Fragment set:html={getComponentChunkLinks()} />
+  <Fragment set:html={getIconLinks()} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="bg-canvas">
+  <div class="h-1 bg-accent"></div>
+  <header class="sticky top-0 z-50 bg-surface border-b border-contrast-low">
+    <nav class="max-w-[1440px] mx-auto px-fluid-md h-16 flex items-center justify-between">
+      <a href="/" class="prose-heading-md font-bold tracking-tight">
+        Praxis Soika
+      </a>
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 rounded"
+        aria-label="Menü öffnen"
+      >
+        <p-icon name="menu-lines" size="medium"></p-icon>
+      </button>
+      <!-- Desktop nav -->
+      <ul class="hidden lg:flex items-center gap-static-md">
+        {navItems.map(item => (
+          <li>
+            <a href={item.href} class="prose-text-sm text-contrast-medium hover:text-contrast-high transition-colors font-medium">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <!-- Mobile nav -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-contrast-low">
+      <ul class="px-fluid-md py-static-md space-y-3">
+        {navItems.map(item => (
+          <li>
+            <a href={item.href} class="block prose-text-sm text-contrast-medium hover:text-contrast-high transition-colors font-medium">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="bg-contrast-high text-contrast-low py-fluid-lg mt-fluid-lg">
+    <div class="max-w-[1440px] mx-auto px-fluid-md">
+      <div class="flex flex-col md:flex-row justify-between gap-static-md">
+        <div>
+          <p class="prose-heading-sm font-bold mb-2 text-inverse">Gemeinschaftspraxis Soika</p>
+          <p class="prose-text-xs text-contrast-medium">Ihre Hausarztpraxis mit zwei Standorten</p>
+        </div>
+        <div class="flex gap-static-md prose-text-xs">
+          <a href="/impressum" class="text-contrast-medium hover:text-inverse transition-colors">Impressum</a>
+          <a href="/datenschutz" class="text-contrast-medium hover:text-inverse transition-colors">Datenschutz</a>
+        </div>
+      </div>
+      <p class="mt-static-md prose-text-xs text-contrast-medium">© {new Date().getFullYear()} Gemeinschaftspraxis Soika. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <Fragment set:html={getLoaderScript()} />
+
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => {
+      menu?.classList.toggle('hidden');
+    });
+    menu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu?.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

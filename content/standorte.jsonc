@@ -1,0 +1,33 @@
+{
+  // Standorte der Gemeinschaftspraxis
+  "standorte": [
+    {
+      "name": "Standort 1",
+      "address": "Musterstraße 10, 12345 Musterstadt",
+      "phone": "0123 / 456 789 0",
+      "fax": "0123 / 456 789 1",
+      "email": "praxis@gemeinschaftspraxis-soika.de",
+      "hours": {
+        "Mo": "08:00 – 12:00, 15:00 – 18:00",
+        "Di": "08:00 – 12:00, 15:00 – 18:00",
+        "Mi": "08:00 – 12:00",
+        "Do": "08:00 – 12:00, 15:00 – 19:00",
+        "Fr": "08:00 – 12:00"
+      }
+    },
+    {
+      "name": "Standort 2",
+      "address": "Beispielweg 5, 12345 Musterstadt",
+      "phone": "0123 / 456 789 2",
+      "fax": "0123 / 456 789 3",
+      "email": "praxis2@gemeinschaftspraxis-soika.de",
+      "hours": {
+        "Mo": "08:00 – 12:00, 14:00 – 17:00",
+        "Di": "08:00 – 12:00, 14:00 – 17:00",
+        "Mi": "08:00 – 12:00",
+        "Do": "08:00 – 12:00, 14:00 – 17:00",
+        "Fr": "08:00 – 12:00"
+      }
+    }
+  ]
+}

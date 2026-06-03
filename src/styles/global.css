@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+@import '@porsche-design-system/components-js/tailwindcss';
+
+@theme {
+  --color-accent: #1a6b5c;
+  --color-accent-light: #e8f5f1;
+  --color-accent-dark: #124a40;
+  --color-warm: #f8f6f3;
+  --color-warm-dark: #efe9e1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}

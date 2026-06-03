@@ -1,0 +1,47 @@
+{
+  // Team der Gemeinschaftspraxis Soika
+  "aerzte": [
+    {
+      "name": "Dr. med. Maria Soika",
+      "role": "Fachärztin für Allgemeinmedizin",
+      "description": "Praxisinhaberin. Schwerpunkte: Innere Medizin, Psychosomatik.",
+      "image": "/images/team/placeholder.jpg"
+    },
+    {
+      "name": "Dr. med. Thomas Soika",
+      "role": "Facharzt für Allgemeinmedizin",
+      "description": "Praxisinhaber. Schwerpunkte: Sportmedizin, Chirotherapie.",
+      "image": "/images/team/placeholder.jpg"
+    },
+    {
+      "name": "Dr. med. Anna Müller",
+      "role": "Fachärztin für Innere Medizin",
+      "description": "Angestellte Ärztin. Schwerpunkte: Diabetologie, Ernährungsmedizin.",
+      "image": "/images/team/placeholder.jpg"
+    },
+    {
+      "name": "Felix Weber",
+      "role": "Arzt in Weiterbildung",
+      "description": "Weiterbildung Allgemeinmedizin.",
+      "image": "/images/team/placeholder.jpg"
+    },
+    {
+      "name": "Dr. med. Lisa Schneider",
+      "role": "Fachärztin für Allgemeinmedizin",
+      "description": "Angestellte Ärztin. Schwerpunkte: Palliativmedizin.",
+      "image": "/images/team/placeholder.jpg"
+    }
+  ],
+  "mfa": [
+    { "name": "Sandra Hoffmann", "role": "Leitende MFA", "image": "/images/team/placeholder.jpg" },
+    { "name": "Petra Klein", "role": "MFA", "image": "/images/team/placeholder.jpg" },
+    { "name": "Julia Braun", "role": "MFA", "image": "/images/team/placeholder.jpg" },
+    { "name": "Monika Fischer", "role": "MFA", "image": "/images/team/placeholder.jpg" },
+    { "name": "Katharina Wolf", "role": "MFA", "image": "/images/team/placeholder.jpg" },
+    { "name": "Elena Schmidt", "role": "MFA", "image": "/images/team/placeholder.jpg" },
+    { "name": "Stefanie Bauer", "role": "MFA", "image": "/images/team/placeholder.jpg" },
+    { "name": "Nina Richter", "role": "Auszubildende", "image": "/images/team/placeholder.jpg" },
+    { "name": "Laura Krause", "role": "Auszubildende", "image": "/images/team/placeholder.jpg" },
+    { "name": "Marie Wagner", "role": "MFA", "image": "/images/team/placeholder.jpg" }
+  ]
+}

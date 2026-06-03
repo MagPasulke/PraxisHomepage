@@ -1,0 +1,35 @@
+{
+  // Leistungen der Gemeinschaftspraxis
+  "leistungen": [
+    {
+      "title": "Allgemeinmedizin",
+      "icon": "stethoscope",
+      "description": "Umfassende hausärztliche Versorgung für die ganze Familie."
+    },
+    {
+      "title": "Vorsorgeuntersuchungen",
+      "icon": "shield-check",
+      "description": "Check-ups, Krebsvorsorge und Gesundheitsberatung."
+    },
+    {
+      "title": "Impfungen",
+      "icon": "syringe",
+      "description": "Schutzimpfungen nach STIKO-Empfehlungen und Reisemedizin."
+    },
+    {
+      "title": "Chronische Erkrankungen",
+      "icon": "heart-pulse",
+      "description": "DMP-Programme für Diabetes, KHK, Asthma und COPD."
+    },
+    {
+      "title": "Labordiagnostik",
+      "icon": "flask",
+      "description": "Blutuntersuchungen und Schnelltests direkt in der Praxis."
+    },
+    {
+      "title": "Psychosomatik",
+      "icon": "brain",
+      "description": "Psychosomatische Grundversorgung und Gesprächstherapie."
+    }
+  ]
+}

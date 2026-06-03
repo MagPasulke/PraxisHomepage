@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TeamSlider from '../components/TeamSlider.astro';
+
+// Load content from JSONC (strip comments before parsing)
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+function parseJsonc(text: string): any {
+  return JSON.parse(text.replace(/\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, ''));
+}
+
+const contentDir = resolve(process.cwd(), 'content');
+const aktuelles = parseJsonc(readFileSync(resolve(contentDir, 'aktuelles.jsonc'), 'utf-8'));
+const leistungen = parseJsonc(readFileSync(resolve(contentDir, 'leistungen.jsonc'), 'utf-8'));
+const team = parseJsonc(readFileSync(resolve(contentDir, 'team.jsonc'), 'utf-8'));
+const standorteData = parseJsonc(readFileSync(resolve(contentDir, 'standorte.jsonc'), 'utf-8'));
+
+const iconMap: Record<string, string> = {
+  'stethoscope': '🩺',
+  'shield-check': '🛡️',
+  'syringe': '💉',
+  'heart-pulse': '❤️',
+  'flask': '🧪',
+  'brain': '🧠',
+};
+---
+
+<BaseLayout title="Gemeinschaftspraxis Soika – Ihre Hausarztpraxis">
+
+  <!-- Hero / Willkommen -->
+  <section id="willkommen" class="py-fluid-xl bg-warm">
+    <div class="max-w-[1440px] mx-auto px-fluid-md">
+      <div class="max-w-3xl">
+        <h1 class="prose-display-md mb-static-md">{aktuelles.welcome.title}</h1>
+        <p class="prose-text-md text-contrast-medium">{aktuelles.welcome.text}</p>
+      </div>
+
+      {aktuelles.news.length > 0 && (
+        <div class="mt-fluid-lg">
+          <h2 class="prose-heading-md mb-static-md">Aktuelles</h2>
+          <div class="grid gap-static-md md:grid-cols-2">
+            {aktuelles.news.map((item: any) => (
+              <article class="bg-surface p-fluid-md rounded-lg border-l-4 border-l-accent border border-contrast-low">
+                <time class="prose-text-xs text-contrast-medium">{new Date(item.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}</time>
+                <h3 class="prose-heading-sm mt-1 mb-2">{item.title}</h3>
+                <p class="prose-text-sm text-contrast-medium">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Leistungen -->
+  <section id="leistungen" class="py-fluid-xl">
+    <div class="max-w-[1440px] mx-auto px-fluid-md">
+      <h2 class="prose-display-sm mb-fluid-md">Unsere Leistungen</h2>
+      <div class="grid gap-static-md sm:grid-cols-2 lg:grid-cols-3">
+        {leistungen.leistungen.map((item: any) => (
+          <div class="bg-surface p-fluid-md rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] hover:border-accent transition-all border border-transparent">
+            <span class="text-3xl mb-static-sm block">{iconMap[item.icon] || '⚕️'}</span>
+            <h3 class="prose-heading-sm mb-2">{item.title}</h3>
+            <p class="prose-text-sm text-contrast-medium">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="py-fluid-xl bg-warm">
+    <div class="max-w-[1440px] mx-auto px-fluid-md">
+      <h2 class="prose-display-sm mb-fluid-md">Unser Team</h2>
+      <TeamSlider aerzte={team.aerzte} mfa={team.mfa} />
+    </div>
+  </section>
+
+  <!-- Standorte -->
+  <section id="standorte" class="py-fluid-xl">
+    <div class="max-w-[1440px] mx-auto px-fluid-md">
+      <h2 class="prose-display-sm mb-fluid-md">Unsere Standorte</h2>
+      <div class="grid gap-fluid-md md:grid-cols-2">
+        {standorteData.standorte.map((standort: any) => (
+          <div class="bg-canvas p-fluid-md rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+            <h3 class="prose-heading-md mb-static-md">{standort.name}</h3>
+            <address class="not-italic prose-text-sm text-contrast-medium space-y-2">
+              <p>{standort.address}</p>
+              <p>Tel: <a href={`tel:${standort.phone.replace(/[\s\/]/g, '')}`} class="text-accent hover:text-accent-dark hover:underline">{standort.phone}</a></p>
+              <p>Fax: {standort.fax}</p>
+              <p>E-Mail: <a href={`mailto:${standort.email}`} class="text-accent hover:text-accent-dark hover:underline">{standort.email}</a></p>
+            </address>
+            <div class="mt-static-md">
+              <h4 class="prose-text-sm font-semibold mb-2">Sprechzeiten</h4>
+              <table class="prose-text-xs text-contrast-medium w-full">
+                <tbody>
+                  {Object.entries(standort.hours).map(([day, time]) => (
+                    <tr class="border-b border-contrast-low last:border-0">
+                      <td class="py-1.5 font-medium pr-4">{day}</td>
+                      <td class="py-1.5">{time as string}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Rezeptbestellung -->
+  <section id="rezeptbestellung" class="py-fluid-xl">
+    <div class="max-w-[1440px] mx-auto px-fluid-md">
+      <h2 class="prose-display-sm mb-static-md">Rezeptbestellung</h2>
+      <div class="max-w-2xl bg-accent-light p-fluid-md rounded-lg border border-accent/20">
+        <p class="prose-text-sm text-contrast-medium mb-static-sm">
+          Unser Online-Formular zur Rezeptbestellung wird in Kürze hier verfügbar sein.
+        </p>
+        <p class="prose-text-sm text-contrast-medium">
+          Bitte kontaktieren Sie uns in der Zwischenzeit telefonisch oder per E-Mail.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
