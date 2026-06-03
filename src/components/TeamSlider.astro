@@ -7,44 +7,95 @@ interface Props {
 const { aerzte, mfa } = Astro.props;
 ---
 
-<div class="space-y-fluid-lg">
-  <!-- Ärzteteam Carousel -->
-  <p-carousel heading="Ärzteteam" slides-per-page="4" intl="{'slideLabel': 'Slide %s von %s', 'prev': 'Vorheriger Slide', 'next': 'Nächster Slide', 'first': 'Zum ersten Slide', 'last': 'Zum letzten Slide'}">
-    {aerzte.map((person) => (
-      <div class="cursor-pointer group team-card-arzt" data-name={person.name} data-description={person.description}>
-        <div class="aspect-[3/4] bg-surface-alt rounded-lg overflow-hidden mb-static-sm">
-          <div class="w-full h-full flex items-center justify-center text-contrast-low text-5xl">
-            👤
-          </div>
-        </div>
-        <h4 class="prose-text-sm font-semibold group-hover:text-primary transition-colors">{person.name}</h4>
-        <p class="prose-text-xs text-contrast-medium">{person.role}</p>
+<div class="space-y-12">
+  <!-- Ärzteteam -->
+  <div>
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="prose-heading-sm">Ärzteteam</h3>
+      <div class="flex gap-2">
+        <button class="slider-prev p-2 rounded-full border border-contrast-low hover:border-contrast-high transition-colors" data-target="aerzte-track" aria-label="Zurück">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="slider-next p-2 rounded-full border border-contrast-low hover:border-contrast-high transition-colors" data-target="aerzte-track" aria-label="Weiter">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
-    ))}
-  </p-carousel>
+    </div>
+    <div class="overflow-hidden">
+      <div id="aerzte-track" class="flex gap-6 transition-transform duration-300 ease-out">
+        {aerzte.map((person) => (
+          <div class="flex-shrink-0 w-[calc(25%-18px)] cursor-pointer group team-card-arzt" data-name={person.name} data-description={person.description}>
+            <div class="aspect-[3/4] bg-surface-alt rounded-lg overflow-hidden mb-3">
+              <div class="w-full h-full flex items-center justify-center text-contrast-low text-5xl">
+                👤
+              </div>
+            </div>
+            <h4 class="prose-text-sm font-semibold group-hover:text-accent transition-colors">{person.name}</h4>
+            <p class="prose-text-xs text-contrast-medium">{person.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
 
-  <!-- MFA Carousel -->
-  <p-carousel heading="Medizinische Fachangestellte" slides-per-page="5" intl="{'slideLabel': 'Slide %s von %s', 'prev': 'Vorheriger Slide', 'next': 'Nächster Slide', 'first': 'Zum ersten Slide', 'last': 'Zum letzten Slide'}">
-    {mfa.map((person) => (
-      <div>
-        <div class="aspect-square bg-surface-alt rounded-lg overflow-hidden mb-static-sm">
-          <div class="w-full h-full flex items-center justify-center text-contrast-low text-4xl">
-            👤
-          </div>
-        </div>
-        <h4 class="prose-text-xs font-semibold">{person.name}</h4>
-        <p class="prose-text-xs text-contrast-medium">{person.role}</p>
+  <!-- MFA -->
+  <div>
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="prose-heading-sm">Medizinische Fachangestellte</h3>
+      <div class="flex gap-2">
+        <button class="slider-prev p-2 rounded-full border border-contrast-low hover:border-contrast-high transition-colors" data-target="mfa-track" aria-label="Zurück">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="slider-next p-2 rounded-full border border-contrast-low hover:border-contrast-high transition-colors" data-target="mfa-track" aria-label="Weiter">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
       </div>
-    ))}
-  </p-carousel>
+    </div>
+    <div class="overflow-hidden">
+      <div id="mfa-track" class="flex gap-4 transition-transform duration-300 ease-out">
+        {mfa.map((person) => (
+          <div class="flex-shrink-0 w-[calc(20%-13px)]">
+            <div class="aspect-square bg-surface-alt rounded-lg overflow-hidden mb-3">
+              <div class="w-full h-full flex items-center justify-center text-contrast-low text-4xl">
+                👤
+              </div>
+            </div>
+            <h4 class="prose-text-xs font-semibold">{person.name}</h4>
+            <p class="prose-text-xs text-contrast-medium">{person.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Team detail flyout -->
+<!-- Team detail modal -->
 <p-modal id="team-modal" heading="" open="false">
   <p id="team-modal-desc" class="prose-text-sm text-contrast-medium"></p>
 </p-modal>
 
 <script>
+  // Slider logic
+  document.querySelectorAll('.slider-prev, .slider-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target')!;
+      const track = document.getElementById(targetId)!;
+      const container = track.parentElement!;
+      const scrollAmount = container.offsetWidth;
+      const currentTransform = parseInt(track.style.transform.replace('translateX(', '').replace('px)', '') || '0');
+      const maxScroll = -(track.scrollWidth - container.offsetWidth);
+
+      if (btn.classList.contains('slider-next')) {
+        const next = Math.max(currentTransform - scrollAmount, maxScroll);
+        track.style.transform = `translateX(${next}px)`;
+      } else {
+        const prev = Math.min(currentTransform + scrollAmount, 0);
+        track.style.transform = `translateX(${prev}px)`;
+      }
+    });
+  });
+
+  // Modal logic
   const modal = document.getElementById('team-modal') as any;
   const modalDesc = document.getElementById('team-modal-desc');
 
