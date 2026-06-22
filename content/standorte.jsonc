@@ -2,10 +2,11 @@
   // Standorte der Gemeinschaftspraxis
   "standorte": [
     {
-      "name": "Standort 1",
-      "address": "Musterstraße 10, 12345 Musterstadt",
-      "phone": "0123 / 456 789 0",
-      "fax": "0123 / 456 789 1",
+      "name": "Schopfloch",
+      "address": "Hauptstraße 8",
+      "zip": "72296 Schopfloch",
+      "phone": "07443 9550",
+      "fax": "07443 9551",
       "email": "praxis@gemeinschaftspraxis-soika.de",
       "hours": {
         "Mo": "08:00 – 12:00, 15:00 – 18:00",
@@ -16,11 +17,12 @@
       }
     },
     {
-      "name": "Standort 2",
-      "address": "Beispielweg 5, 12345 Musterstadt",
-      "phone": "0123 / 456 789 2",
-      "fax": "0123 / 456 789 3",
-      "email": "praxis2@gemeinschaftspraxis-soika.de",
+      "name": "Dornstetten",
+      "address": "Hauptstraße 18",
+      "zip": "72280 Dornstetten",
+      "phone": "07443 9552",
+      "fax": "07443 9553",
+      "email": "dornstetten@gemeinschaftspraxis-soika.de",
       "hours": {
         "Mo": "08:00 – 12:00, 14:00 – 17:00",
         "Di": "08:00 – 12:00, 14:00 – 17:00",
