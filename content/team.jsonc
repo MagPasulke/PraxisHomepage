@@ -5,31 +5,43 @@
       "name": "Christian Soika",
       "role": "Facharzt für Allgemeinmedizin",
       "description": "Praxisinhaber. Schwerpunkte: Innere Medizin, Sportmedizin.",
-      "image": "/images/team/placeholder.jpg"
+      "image": "/images/team/ChristianSoika.png"
     },
     {
       "name": "Birgit Soika",
       "role": "Fachärztin für Allgemeinmedizin",
       "description": "Praxisinhaberin. Schwerpunkte: Psychosomatik, Naturheilverfahren.",
-      "image": "/images/team/placeholder.jpg"
+      "image": "/images/team/BirgitSoika.png"
     },
     {
       "name": "Dr. med. Anna Soika-Dölker",
       "role": "Fachärztin für Allgemeinmedizin",
       "description": "Angestellte Ärztin. Schwerpunkte: Allgemeinmedizin.",
-      "image": "/images/team/placeholder.jpg"
+      "image": "/images/team/AnnaSoika.png"
     },
     {
       "name": "Dr. med. Elke Klotz",
       "role": "Fachärztin für Innere Medizin",
       "description": "Angestellte Ärztin. Schwerpunkte: Innere Medizin, Diabetologie.",
-      "image": "/images/team/placeholder.jpg"
+      "image": "/images/team/ElkeKlotz.png"
     },
     {
-      "name": "Richard Kocher",
+      "name": "Richard Küchler",
       "role": "Facharzt für Innere Medizin",
       "description": "Angestellter Arzt. Schwerpunkte: Innere Medizin.",
-      "image": "/images/team/placeholder.jpg"
+      "image": "/images/team/RichardKuechler.png"
+    },
+    {
+      "name": "Anna Glowacka",
+      "role": "Ärztin",
+      "description": "Angestellte Ärztin.",
+      "image": "/images/team/AnnaGlowacka.png"
+    },
+    {
+      "name": "Kurt Deckelnick",
+      "role": "Facharzt",
+      "description": "Angestellter Arzt.",
+      "image": "/images/team/KurtDeckelnick.png"
     }
   ],
   "mfa": [
