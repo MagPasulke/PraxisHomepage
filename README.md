@@ -2,7 +2,7 @@
 
 Statische Website auf Basis von [Astro](https://astro.build) + Tailwind CSS. Deployment erfolgt automatisch über GitHub Pages.
 
-Live: **https://magpasulke.github.io/PraxisHomepage/**
+Live: **https://www.gemeinschaftspraxis-soika.de**
 
 ## Inhalte pflegen
 

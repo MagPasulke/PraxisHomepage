@@ -24,8 +24,6 @@ const navItems = [
   { label: 'Aktuelles', href: '#aktuelles' },
   { label: 'Kontakt', href: '#kontakt' },
 ];
-
-const base = import.meta.env.BASE_URL;
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -39,14 +37,14 @@ const base = import.meta.env.BASE_URL;
   <Fragment set:html={getFontLinks()} />
   <Fragment set:html={getComponentChunkLinks()} />
   <Fragment set:html={getIconLinks()} />
-  <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body class="bg-white text-gray-900">
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
     <nav class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
       <!-- Logo -->
-      <a href={base} class="flex items-center gap-2">
+      <a href="/" class="flex items-center gap-2">
         <div class="flex flex-col">
           <span class="text-2xl font-bold tracking-wide text-primary">SOIKA</span>
           <span class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Gemeinschaftspraxis</span>
@@ -134,8 +132,8 @@ const base = import.meta.env.BASE_URL;
         <div>
           <h4 class="font-semibold mb-4">Rechtliches</h4>
           <div class="flex flex-col gap-2 text-sm">
-            <a href={`${base}/impressum`} class="text-white/70 hover:text-white transition-colors">Impressum</a>
-            <a href={`${base}/datenschutz`} class="text-white/70 hover:text-white transition-colors">Datenschutz</a>
+            <a href="/impressum" class="text-white/70 hover:text-white transition-colors">Impressum</a>
+            <a href="/datenschutz" class="text-white/70 hover:text-white transition-colors">Datenschutz</a>
           </div>
         </div>
       </div>
