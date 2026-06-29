@@ -12,6 +12,8 @@ function parseJsonc(text: string): any {
 const contentDir = resolve(process.cwd(), 'content');
 const team = parseJsonc(readFileSync(resolve(contentDir, 'team.jsonc'), 'utf-8'));
 const standorteData = parseJsonc(readFileSync(resolve(contentDir, 'standorte.jsonc'), 'utf-8'));
+const aktuelles = parseJsonc(readFileSync(resolve(contentDir, 'aktuelles.jsonc'), 'utf-8'));
+const dateFmt = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 ---
 
 <BaseLayout title="Gemeinschaftspraxis Soika – Medizin, die Vertrauen schafft">
@@ -35,6 +37,23 @@ const standorteData = parseJsonc(readFileSync(resolve(contentDir, 'standorte.jso
               Termin vereinbaren
             </a>
           </div>
+          {aktuelles.news?.length > 0 && (
+            <div class="mt-8 max-w-lg bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="flex-shrink-0 w-2 h-2 bg-accent rounded-full"></span>
+                <p class="text-accent font-semibold text-xs uppercase tracking-wider">Aktuelles</p>
+              </div>
+              <ul class="space-y-3">
+                {aktuelles.news.map((item: any) => (
+                  <li class="flex flex-col">
+                    <span class="text-sm font-semibold text-primary">{item.title}</span>
+                    <span class="text-xs text-gray-500 mb-0.5">{dateFmt.format(new Date(item.date))}</span>
+                    <span class="text-sm text-gray-600">{item.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <!-- Right: Image -->
         <div class="relative">
