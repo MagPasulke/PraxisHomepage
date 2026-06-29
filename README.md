@@ -19,10 +19,15 @@ Alle Texte und Daten liegen im Ordner [`content/`](content/) als JSONC-Dateien (
 In [content/aktuelles.jsonc](content/aktuelles.jsonc) im `news`-Array Einträge ergänzen oder löschen:
 
 ```jsonc
-{ "title": "Sommerurlaub 2026", "date": "2026-07-15", "text": "Praxis geschlossen bis 02.08.2026." }
+{
+  "title": "Urlaub Praxis Schopfloch",
+  "intro": "An folgenden Tagen bleibt unsere Praxis geschlossen:",
+  "dates": ["23.02. – 27.02.2026", "02.04.2026"],
+  "note": "Die Vertretung übernimmt die Praxis in Dornstetten."
+}
 ```
 
-Bei leerem `news`-Array wird der Aktuelles-Block automatisch ausgeblendet.
+`intro`, `dates` und `note` sind optional. Bei leerem `news`-Array wird der Aktuelles-Block automatisch ausgeblendet.
 
 ### Öffnungszeiten / Kontakt
 In [content/standorte.jsonc](content/standorte.jsonc) je Standort `phone`, `fax`, `email` und `hours` (Mo–Fr) anpassen.
@@ -38,13 +43,3 @@ In [content/team.jsonc](content/team.jsonc) unter `aerzte` bzw. `mfa` Personen p
 - [src/pages/impressum.astro](src/pages/impressum.astro)
 - [src/pages/datenschutz.astro](src/pages/datenschutz.astro)
 
-## Lokal entwickeln
-
-```bash
-npm install      # einmalig
-npm run dev      # Vorschau unter localhost
-npm run build    # Produktions-Build prüfen
-```
-
-## Veröffentlichen
-Änderungen committen und auf `main` pushen – der GitHub-Actions-Workflow ([.github/workflows/deploy.yml](.github/workflows/deploy.yml)) baut und deployt automatisch.
