@@ -190,16 +190,79 @@ const aktuelles = parseJsonc(readFileSync(resolve(contentDir, 'aktuelles.jsonc')
         </div>
         <!-- Right: Team grid -->
         <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-6">
-          {team.aerzte.map((person: any) => (
+          {team.aerzte.map((person: any, i: number) => (
             <div class="text-center">
-              <div class="aspect-square bg-gray-100 rounded-full overflow-hidden mb-3 mx-auto w-24 h-24 lg:w-28 lg:h-28 border-4 border-white shadow-md">
-                <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={person.name} class="w-full h-full object-cover object-top" loading="lazy" />
-              </div>
-              <h4 class="text-xs font-semibold text-primary leading-tight">{person.name}</h4>
-              <p class="text-[11px] text-gray-500 mt-0.5">{person.role}</p>
+              {person.hours ? (
+                <button
+                  type="button"
+                  class="group text-center w-full cursor-pointer focus:outline-none"
+                  data-dialog-open={`arzt-${i}`}
+                  aria-haspopup="dialog"
+                >
+                  <div class="aspect-square bg-gray-100 rounded-full overflow-hidden mb-3 mx-auto w-24 h-24 lg:w-28 lg:h-28 border-4 border-white shadow-md transition group-hover:shadow-lg group-hover:border-accent/40">
+                    <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={person.name} class="w-full h-full object-cover object-top" loading="lazy" />
+                  </div>
+                  <h4 class="text-xs font-semibold text-primary leading-tight">{person.name}</h4>
+                  <p class="text-[11px] text-gray-500 mt-0.5">{person.role}</p>
+                  <span class="inline-flex items-center gap-1 mt-1.5 text-[11px] font-medium text-accent group-hover:underline">
+                    Sprechzeiten
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </span>
+                </button>
+              ) : (
+                <div class="text-center">
+                  <div class="aspect-square bg-gray-100 rounded-full overflow-hidden mb-3 mx-auto w-24 h-24 lg:w-28 lg:h-28 border-4 border-white shadow-md">
+                    <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={person.name} class="w-full h-full object-cover object-top" loading="lazy" />
+                  </div>
+                  <h4 class="text-xs font-semibold text-primary leading-tight">{person.name}</h4>
+                  <p class="text-[11px] text-gray-500 mt-0.5">{person.role}</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
+
+        <!-- Sprechzeiten Pop-ups -->
+        {team.aerzte.map((person: any, i: number) => (
+          person.hours && (
+            <dialog id={`arzt-${i}`} class="sprechzeiten-dialog backdrop:bg-black/50 rounded-2xl p-0 w-[90vw] max-w-md shadow-2xl">
+              <div class="p-6">
+                <div class="flex items-start justify-between gap-4 mb-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-white shadow">
+                      <img src={`${import.meta.env.BASE_URL}${person.image}`} alt={person.name} class="w-full h-full object-cover object-top" />
+                    </div>
+                    <div>
+                      <h4 class="text-base font-semibold text-primary leading-tight">{person.name}</h4>
+                      <p class="text-xs text-gray-500">{person.role}</p>
+                    </div>
+                  </div>
+                  <button type="button" class="text-gray-400 hover:text-primary transition" data-dialog-close aria-label="Schließen">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                  </button>
+                </div>
+                <p class="text-sm font-semibold text-primary mb-3">Sprechzeiten</p>
+                <div class="space-y-4">
+                  {Object.entries(person.hours).map(([standort, tage]: [string, any]) => (
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-wide text-accent mb-1.5">{standort}</p>
+                      <table class="w-full text-sm">
+                        <tbody>
+                          {Object.entries(tage).map(([tag, zeit]: [string, any]) => (
+                            <tr class="border-b border-gray-100 last:border-0">
+                              <td class="py-1.5 pr-4 text-gray-600 whitespace-nowrap">{tag}</td>
+                              <td class="py-1.5 text-right text-primary font-medium">{zeit}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </dialog>
+          )
+        ))}
       </div>
     </div>
   </section>
@@ -281,3 +344,21 @@ const aktuelles = parseJsonc(readFileSync(resolve(contentDir, 'aktuelles.jsonc')
   </section>
 
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-dialog-open]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-dialog-open');
+      const dialog = id ? document.getElementById(id) : null;
+      if (dialog instanceof HTMLDialogElement) dialog.showModal();
+    });
+  });
+
+  document.querySelectorAll<HTMLDialogElement>('dialog.sprechzeiten-dialog').forEach((dialog) => {
+    dialog.querySelector('[data-dialog-close]')?.addEventListener('click', () => dialog.close());
+    // Close when clicking on the backdrop
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>

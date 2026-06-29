@@ -5,43 +5,101 @@
       "name": "Christian Soika",
       "role": "Facharzt für Allgemeinmedizin",
       "description": "Praxisinhaber. Schwerpunkte: Innere Medizin, Sportmedizin.",
-      "image": "/images/team/ChristianSoika.png"
+      "image": "/images/team/ChristianSoika.png",
+      "hours": {
+        "Schopfloch": {
+          "Montag": "08:00 – 15:00",
+          "Dienstag": "09:00 – 12:30, 16:30 – 18:30",
+          "Donnerstag": "12:30 – 18:30"
+        }
+      }
     },
     {
       "name": "Birgit Soika",
       "role": "Fachärztin für Allgemeinmedizin",
       "description": "Praxisinhaberin. Schwerpunkte: Psychosomatik, Naturheilverfahren.",
-      "image": "/images/team/BirgitSoika.png"
+      "image": "/images/team/BirgitSoika.png",
+      "hours": {
+        "Schopfloch": {
+          "Montag": "10:00 – 12:30, 16:00 – 18:30",
+          "Mittwoch": "08:00 – 12:30"
+        },
+        "Dornstetten": {
+          "Donnerstag": "08:00 – 12:00, 16:00 – 18:30",
+          "Freitag": "08:00 – 12:30"
+        }
+      }
     },
     {
       "name": "Dr. med. Anna Soika-Dölker",
       "role": "Fachärztin für Allgemeinmedizin",
       "description": "Angestellte Ärztin. Schwerpunkte: Allgemeinmedizin.",
-      "image": "/images/team/AnnaSoika.png"
+      "image": "/images/team/AnnaSoika.png",
+      "hours": {
+        "Schopfloch": {
+          "Mittwoch": "08:00 – 12:00",
+          "Freitag": "08:00 – 12:00"
+        },
+        "Dornstetten": {
+          "Montag": "08:00 – 12:00",
+          "Donnerstag": "08:00 – 12:00"
+        }
+      }
     },
     {
       "name": "Dr. med. Elke Klotz",
       "role": "Fachärztin für Innere Medizin",
       "description": "Angestellte Ärztin. Schwerpunkte: Innere Medizin, Diabetologie.",
-      "image": "/images/team/ElkeKlotz.png"
+      "image": "/images/team/ElkeKlotz.png",
+      "hours": {
+        "Schopfloch": {
+          "Donnerstag": "08:00 – 12:30, 16:00 – 18:30",
+          "Freitag": "08:00 – 12:30"
+        },
+        "Dornstetten": {
+          "Montag": "08:00 – 12:00, 16:00 – 18:30",
+          "Dienstag": "08:00 – 12:30"
+        }
+      }
     },
     {
       "name": "Richard Küchler",
       "role": "Facharzt für Innere Medizin",
       "description": "Angestellter Arzt. Schwerpunkte: Innere Medizin.",
-      "image": "/images/team/RichardKuechler.png"
+      "image": "/images/team/RichardKuechler.png",
+      "hours": {
+        "Schopfloch": {
+          "Montag": "08:00 – 17:00",
+          "Dienstag": "08:00 – 17:00",
+          "Donnerstag": "08:00 – 16:00"
+        }
+      }
     },
     {
       "name": "Anna Glowacka",
       "role": "Ärztin",
       "description": "Angestellte Ärztin.",
-      "image": "/images/team/AnnaGlowacka.png"
+      "image": "/images/team/AnnaGlowacka.png",
+      "hours": {
+        "Schopfloch": {
+          "Montag": "08:00 – 12:00",
+          "Dienstag": "08:00 – 12:00",
+          "Mittwoch": "08:00 – 12:00",
+          "Donnerstag": "08:00 – 12:00",
+          "Freitag": "08:00 – 12:00"
+        }
+      }
     },
     {
       "name": "Kurt Deckelnick",
       "role": "Facharzt",
       "description": "Angestellter Arzt.",
-      "image": "/images/team/KurtDeckelnick.png"
+      "image": "/images/team/KurtDeckelnick.png",
+      "hours": {
+        "Dornstetten": {
+          "Mittwoch": "08:00 – 12:00"
+        }
+      }
     }
   ],
   "mfa": [
