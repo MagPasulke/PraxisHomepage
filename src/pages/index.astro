@@ -105,33 +105,6 @@ const dateFmt = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-dig
     </div>
   </section>
 
-  <!-- Standorte Section -->
-  <section id="praxis" class="py-16 bg-white border-t border-gray-100">
-    <div class="max-w-[1280px] mx-auto px-6">
-      <h2 class="text-2xl font-bold text-primary mb-10">Unsere Standorte</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        {standorteData.standorte.map((standort: any) => (
-          <div class="p-8 bg-warm rounded-xl border border-gray-100">
-            <div class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold text-primary mb-1">{standort.name}</h3>
-                <p class="text-sm text-gray-600">{standort.address}</p>
-                <p class="text-sm text-gray-600">{standort.zip}</p>
-                <a href={`#standort-${standort.name.toLowerCase()}`} class="inline-flex items-center gap-1 text-sm text-accent font-medium mt-3 hover:text-accent-dark transition-colors">
-                  Mehr erfahren
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Leistungen Section -->
   <section id="leistungen" class="py-20 bg-warm border-t border-gray-100">
     <div class="max-w-[1280px] mx-auto px-6">
@@ -271,8 +244,9 @@ const dateFmt = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-dig
 
   <!-- Standort Details -->
   <section id="kontakt" class="py-20 bg-warm">
+    <span id="praxis" class="block -mt-20 pt-20"></span>
     <div class="max-w-[1280px] mx-auto px-6">
-      <h2 class="text-2xl font-bold text-primary mb-10">Kontakt & Sprechzeiten</h2>
+      <h2 class="text-2xl font-bold text-primary mb-10">Kontakt &amp; Öffnungszeiten</h2>
       <div class="grid md:grid-cols-2 gap-8">
         {standorteData.standorte.map((standort: any) => (
           <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
@@ -283,7 +257,7 @@ const dateFmt = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-dig
               <p>Fax: {standort.fax}</p>
               <p>E-Mail: <a href={`mailto:${standort.email}`} class="text-accent hover:text-accent-dark font-medium">{standort.email}</a></p>
             </address>
-            <h4 class="text-sm font-semibold text-primary mb-3">Sprechzeiten</h4>
+            <h4 class="text-sm font-semibold text-primary mb-3">Öffnungszeiten</h4>
             <table class="text-sm text-gray-600 w-full">
               <tbody>
                 {Object.entries(standort.hours).map(([day, time]) => (
